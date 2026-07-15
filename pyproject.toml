@@ -1,0 +1,56 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "docs-reader"
+version = "0.1.0"
+description = "LLM-based structured extraction from PDF / Office / image / HWP documents into schema-validated JSON."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "docs_reader" }]
+dependencies = [
+    "typer>=0.12",
+    "pydantic>=2.5",
+    "pymupdf>=1.24",
+    "pillow>=10.0",
+    "python-docx>=1.1",
+    "openpyxl>=3.1",
+    "python-pptx>=0.6",
+    "python-dotenv>=1.0",
+]
+
+[project.optional-dependencies]
+# LLM provider backends (install what you use)
+openai = ["openai>=1.40"]          # open-source models via OpenAI-compatible endpoint (vLLM/Ollama/...) AND the default backend
+gemini = ["google-genai>=0.3"]
+claude = ["anthropic>=0.40"]
+# Stage A open OCR / layout (pick per benchmark; rapidocr is the lightweight CPU default)
+ocr = ["rapidocr-onnxruntime>=1.3"]
+ocr-docling = ["docling>=2.0"]
+# Korean-specialized OCR (choose one)
+ocr-korean = ["paddleocr>=2.7", "paddlepaddle>=2.6"]   # --ocr korean|paddle
+ocr-easyocr = ["easyocr>=1.7"]                          # --ocr easyocr
+# HWP (Korean Hangul word processor) — pyhwp parses HWP5 incl. tables
+hwp = ["pyhwp>=0.1b15"]
+# Everything
+all = [
+    "openai>=1.40",
+    "google-genai>=0.3",
+    "anthropic>=0.40",
+    "rapidocr-onnxruntime>=1.3",
+]
+dev = ["pytest>=8.0"]
+
+[project.scripts]
+docs-reader = "docs_reader.cli:app"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+docs_reader = ["py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

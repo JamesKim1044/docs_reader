@@ -1,0 +1,32 @@
+{
+  "title": "Invoice",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "invoice_number": { "type": ["string", "null"], "description": "Invoice / document number" },
+    "issue_date": { "type": ["string", "null"], "format": "date", "description": "Date the invoice was issued (YYYY-MM-DD)" },
+    "due_date": { "type": ["string", "null"], "format": "date", "description": "Payment due date (YYYY-MM-DD)" },
+    "supplier_name": { "type": ["string", "null"], "description": "Seller / supplier name" },
+    "buyer_name": { "type": ["string", "null"], "description": "Buyer / customer name" },
+    "currency": { "type": ["string", "null"], "description": "ISO currency code, e.g. KRW, USD" },
+    "subtotal": { "type": ["number", "null"], "description": "Amount before tax" },
+    "tax": { "type": ["number", "null"], "description": "Tax amount (VAT)" },
+    "total": { "type": ["number", "null"], "description": "Grand total to be paid" },
+    "line_items": {
+      "type": "array",
+      "description": "Itemized lines",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "description": { "type": "string", "description": "Product or service description" },
+          "quantity": { "type": ["number", "null"], "description": "Quantity / count" },
+          "unit_price": { "type": ["number", "null"], "description": "Price per unit" },
+          "amount": { "type": ["number", "null"], "description": "Line total" }
+        },
+        "required": ["description"]
+      }
+    }
+  },
+  "required": []
+}

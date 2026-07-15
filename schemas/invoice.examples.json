@@ -1,0 +1,22 @@
+{
+  "examples": [
+    {
+      "input": "TAX INVOICE\nInvoice No: INV-2024-0091\nDate: 2024-03-05  Due: 2024-04-04\nFrom: Acme Supplies Ltd\nBill To: Globex Corp\nDescription            Qty   Unit    Amount\nWidget A                10   5.00    50.00\nWidget B                 2  20.00    40.00\nSubtotal: 90.00  VAT(10%): 9.00  Total: 99.00 USD",
+      "output": {
+        "invoice_number": "INV-2024-0091",
+        "issue_date": "2024-03-05",
+        "due_date": "2024-04-04",
+        "supplier_name": "Acme Supplies Ltd",
+        "buyer_name": "Globex Corp",
+        "currency": "USD",
+        "subtotal": 90.0,
+        "tax": 9.0,
+        "total": 99.0,
+        "line_items": [
+          { "description": "Widget A", "quantity": 10, "unit_price": 5.0, "amount": 50.0 },
+          { "description": "Widget B", "quantity": 2, "unit_price": 20.0, "amount": 40.0 }
+        ]
+      }
+    }
+  ]
+}

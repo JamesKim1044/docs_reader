@@ -1,0 +1,40 @@
+# docs_reader runtime dependencies.
+#   pip install -r requirements.txt
+# (Equivalent to `pip install -e .` core + the default open-source backend.)
+
+# --- Core: loaders + pipeline + CLI ---
+typer>=0.12
+pydantic>=2.5
+pymupdf>=1.24
+pillow>=10.0
+python-docx>=1.1
+openpyxl>=3.1
+python-pptx>=0.6
+python-dotenv>=1.0
+
+# --- Default backend: open-source models via any OpenAI-compatible endpoint
+#     (vLLM / Ollama / LM Studio / OpenRouter) ---
+openai>=1.40
+
+# --- Stage A OCR for scanned/image/HWP pages. The vision path still works without
+#     OCR via a VLM, so uncomment only if you want the cheaper/more-precise
+#     OCR->text route. ---
+# rapidocr-onnxruntime>=1.3          # general (중/영 위주, 한국어 약함)
+# --- Korean-specialized OCR (pick ONE; --ocr korean|paddle|easyocr) ---
+# paddleocr>=2.7                     # + paddlepaddle>=2.6  (PaddleOCR-korean, 권장)
+# paddlepaddle>=2.6
+# easyocr>=1.7                       # 설치 간단, torch 필요
+
+# --- Optional escalation providers (low-confidence cross-check) ---
+# google-genai>=0.3       # Gemini
+# anthropic>=0.40         # Claude
+
+# --- Optional higher-fidelity OCR/layout (tables, reading order) ---
+# docling>=2.0
+
+# --- HWP (Korean Hangul word processor). pyhwp parses HWP5 binary (incl. tables)
+#     directly — handles government HWP that LibreOffice's filter fails on. ---
+# pyhwp>=0.1b15
+
+# NOTE: Legacy Office (ppt/doc/xls) and .hwpx conversion require the system package
+#       LibreOffice (`soffice`).
