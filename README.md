@@ -1,5 +1,7 @@
 # docs_reader
 
+*한국어 · [English README](README.en.md)*
+
 LLM 기반 문서 구조화 추출 CLI. PDF · Office(docx/xlsx/pptx, 레거시 ppt/doc/xls) ·
 이미지/스캔본 · **HWP(한글)** 에서 정해진 **스키마(필드)** 를 뽑아 검증된 **JSON** 으로 만듭니다.
 (HWP는 pyhwp `hwp5html`로 직접 파싱 — LibreOffice가 실패하는 정부 HWP도 처리. 레거시 ppt/doc/xls·hwpx는 LibreOffice 변환.)
